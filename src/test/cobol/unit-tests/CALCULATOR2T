@@ -1,0 +1,5 @@
+           TESTSUITE 'CALCULATOR'
+           
+           TESTCASE 'OPERACION IS AN ADD'
+           SET OPERACION TO "a"
+           EXPECT OPERACION TO BE "a"
