@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('unit testing phase') {
             agent {
-                docker { image 'lozahec/open-cobol-gnu:latest' }
+                label 'base'
             }
             steps {
                 //Compile unit testing framework
@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Development | Build') {
             agent {
-                docker { image 'lozahec/open-cobol-gnu:latest' }
+                label 'base'
             }
             steps {
                 echo 'Build the calculator '
