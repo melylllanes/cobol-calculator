@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('unit testing phase') {
             agent {
-                label 'base'
+                label 'Base'
             }
             steps {
                 //Compile unit testing framework
@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Development | Build') {
             agent {
-                label 'base'
+                label 'Base'
             }
             steps {
                 echo 'Build the calculator '
