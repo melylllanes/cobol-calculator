@@ -27,7 +27,7 @@ pipeline {
         }
        stage('Funtional testing') {
            agent {
-                label 'cobol-maven'
+                label 'opencobol'
             }
             steps {
                 echo 'Buid the calculator binary'
