@@ -33,6 +33,7 @@ pipeline {
                 echo 'Buid the calculator binary'
                 sh 'pwd'
                 sh 'cobc -free -x -o calculator2-exe src/main/cobol/CALCULATOR2.CBL'
+                sh 'ls src/main/cobol/'
                 sh 'cp src/main/cobol/calculator2-exe /tmp'
                 echo 'Downloading Cucumber project'
                 
