@@ -20,9 +20,9 @@ pipeline {
             }
             steps {
                 echo 'Build the calculator '
-                sh 'docker build -t .'
+                //sh 'docker build -t .'
                 echo 'run the image'
-                sh 'docker run calculator:latest 9 8 "a"'
+                //sh 'docker run calculator:latest 9 8 "a"'
             }
         }
        stage('Funtional testing') {
