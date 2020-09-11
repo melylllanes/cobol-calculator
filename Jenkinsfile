@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('unit testing phase') {
             agent {
-                label 'opencobol'
+                label 'cobol-bin'
             }
             steps {
                 //Compile unit testing framework
@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Development | Build') {
             agent {
-                label 'opencobol'
+                label 'cobol-bin'
             }
             steps {
                 echo 'Build the calculator '
@@ -27,7 +27,7 @@ pipeline {
         }
        stage('Funtional testing') {
            agent {
-                label 'opencobol'
+                label 'cobol-bin'
             }
             steps {
                 echo 'Buid the calculator binary'
