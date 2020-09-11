@@ -31,12 +31,13 @@ pipeline {
             }
             steps {
                 echo 'Buid the calculator binary'
+                sh 'cd src/main/cobol'
                 sh 'pwd'
-                sh 'cobc -free -x -o calculator2-exe src/main/cobol/CALCULATOR2.CBL'
-                sh 'ls src/main/cobol/'
-                sh 'cp src/main/cobol/calculator2-exe /tmp'
+                sh 'cobc -free -x -o calculator2-exe CALCULATOR2.CBL'
+                sh 'ls'
+                sh 'cp calculator2-exe /tmp'
+                sh 'cd /opt/workspace/Cobol_Demo'
                 echo 'Downloading Cucumber project'
-                
                 checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/diana-estrada/hellocucumber.git']]]
                 sh 'cd hellocucumber'
                 sh 'mvn test'
