@@ -49,6 +49,7 @@ pipeline {
                 echo 'Downloading Cucumber project'
                 checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/diana-estrada/hellocucumber.git']]]
                 sh 'whoami'
+                sh 'id'
                 sh 'set'
                 sh 'whereis mvn'
             }
@@ -62,6 +63,7 @@ pipeline {
                 echo 'Downloading Cucumber project'
                 checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/diana-estrada/hellocucumber.git']]]
                 sh 'whoami'
+                sh 'id'                
                 sh 'ls -al /usr/local/bin/scl_enable'
                 sh 'set'
                 sh 'whereis mvn'
