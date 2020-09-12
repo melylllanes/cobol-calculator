@@ -53,7 +53,9 @@ pipeline {
     }
     post {
         always {
-            cucumber '**/cucumber.json'
+            cucumber buildStatus: 'UNSTABLE',
+                reportTitle: 'My report',
+                fileIncludePattern: '**/*.json',
         }
     }
 }
