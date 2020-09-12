@@ -36,7 +36,7 @@ pipeline {
         //        //sh 'docker run calculator:latest 9 8 "a"'
         //    }
         //}
-        stage('Functional testing') {
+        stage('Functional testing maven') {
            agent {
                 label 'cobol-bin'
             }
