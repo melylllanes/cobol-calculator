@@ -52,6 +52,7 @@ pipeline {
                 sh 'id'
                 sh 'set'
                 sh 'whereis mvn'
+                sh 'ls /opt'
             }
         }       
 
