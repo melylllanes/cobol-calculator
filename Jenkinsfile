@@ -14,6 +14,19 @@ pipeline {
                 sh './run-ut CALCULATOR2C CALCULATOR2 CALCULATOR2T'
             }
         }
+        stage('SonarCloud Analysis') {
+            agent {
+                label 'cobol-bin'
+            }            
+            environment {
+                scannerHome = tool 'SonarCubeScanner'
+            }            
+            steps {
+                withSonarQubeEnv('sonar') {
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }               
+            }
+        }
         stage('Development | Build') {
             agent {
                 label 'cobol-bin'
@@ -37,10 +50,8 @@ pipeline {
                 echo 'Downloading Cucumber project'
                 checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/diana-estrada/hellocucumber.git']]]
                 sh 'ls -al'
-                sh '/opt/rh/rh-maven33/root/usr/bin/mvn test'
+                sh 'set & /opt/rh/rh-maven33/root/usr/bin/mvn test'
             }
-        }
-   
-                
+        }       
     }
 }
