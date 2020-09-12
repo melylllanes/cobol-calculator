@@ -1,6 +1,4 @@
 pipeline {
-    agent none
-
     stages {
         //stage('unit testing phase') {
         //    agent {
@@ -38,7 +36,7 @@ pipeline {
         //        //sh 'docker run calculator:latest 9 8 "a"'
         //    }
         //}
-       stage('Functional testing') {
+        stage('Functional testing') {
            agent {
                 label 'cobol-bin'
             }
@@ -61,7 +59,7 @@ pipeline {
             }
         }       
 
-       stage('Functional testing') {
+        stage('Functional testing') {
            agent {
                 label 'maven'
             }
@@ -82,5 +80,6 @@ pipeline {
                 sh 'ls /usr/bin & ls /usr/local/bin'
                 sh 'whereis mvn'
             }
-       }       
+        }  
+    }
 }
