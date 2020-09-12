@@ -6,10 +6,10 @@ pipeline {
                 label 'cobol-bin'
             }
             steps {
-                Compile unit testing framework
+                echo 'Compile unit testing framework'
                 echo 'Unit test'
                 sh './compile ZUTZCPC'
-                run test suite calculator
+                echo 'Run test suite calculator'
                 sh './run-ut CALCULATOR2C CALCULATOR2 CALCULATOR2T'
             }
         }
