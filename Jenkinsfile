@@ -55,7 +55,7 @@ pipeline {
         always {
             cucumber buildStatus: 'UNSTABLE',
                 reportTitle: 'My report',
-                fileIncludePattern: '**/*.json',
+                fileIncludePattern: '**/*.json'
         }
     }
 }
