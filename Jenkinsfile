@@ -46,7 +46,7 @@ pipeline {
                 sh 'cd src/main/cobol && cobc -free -x -o calculator2-exe CALCULATOR2.CBL'
                 sh 'cp src/main/cobol/calculator2-exe /tmp'
                 echo 'Downloading Cucumber project'
-                checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https:github.com/diana-estrada/hellocucumber.git']]]
+                checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/diana-estrada/hellocucumber.git']]]
                 sh 'mvn test'
             }
         }       
