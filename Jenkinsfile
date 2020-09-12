@@ -82,6 +82,5 @@ pipeline {
                 sh 'ls /usr/bin & ls /usr/local/bin'
                 sh 'whereis mvn'
             }
-        }       
-    }
+       }       
 }
