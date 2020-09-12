@@ -48,10 +48,7 @@ pipeline {
                 sh 'cp src/main/cobol/calculator2-exe /tmp'
                 echo 'Downloading Cucumber project'
                 checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/diana-estrada/hellocucumber.git']]]
-                sh 'ls -al'
                 sh 'whoami'
-                sh 'su root'
-                sh 'chmod +x /usr/local/bin/scl_enable'
                 sh 'ls -al /usr/local/bin/scl_enable'
                 sh '/usr/local/bin/scl_enable'
                 sh 'set'
@@ -65,16 +62,9 @@ pipeline {
                 label 'maven'
             }
             steps {
-                echo 'Buid the calculator binary'
-                sh 'cd src/main/cobol && cobc -free -x -o calculator2-exe CALCULATOR2.CBL'
-                sh 'ls src/main/cobol'
-                sh 'cp src/main/cobol/calculator2-exe /tmp'
                 echo 'Downloading Cucumber project'
                 checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/diana-estrada/hellocucumber.git']]]
-                sh 'ls -al'
                 sh 'whoami'
-                sh 'su root'
-                sh 'chmod +x /usr/local/bin/scl_enable'
                 sh 'ls -al /usr/local/bin/scl_enable'
                 sh '/usr/local/bin/scl_enable'
                 sh 'set'
