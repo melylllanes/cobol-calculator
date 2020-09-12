@@ -50,7 +50,7 @@ pipeline {
                 echo 'Downloading Cucumber project'
                 checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/diana-estrada/hellocucumber.git']]]
                 sh 'ls -al'
-                sh 'su $(id -un 1001) & set & /opt/rh/rh-maven33/root/usr/bin/mvn test'
+                sh 'cat /usr/local/bin/scl_enable $ ls /usr & ls /usr/bin & ls /usr/local/bin'
             }
         }       
     }
