@@ -1,4 +1,5 @@
 pipeline {
+    agent none
     stages {
         //stage('unit testing phase') {
         //    agent {
