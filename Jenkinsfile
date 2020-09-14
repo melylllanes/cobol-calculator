@@ -44,7 +44,7 @@ pipeline {
             steps {
                 checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/diana-estrada/hellocucumber.git']]]
                 echo 'Buid the calculator binary'
-                sh 'cd src/main/cobol; pwd; ls -al; cobc -free -x -o calculator2-exe CALCULATOR2.CBL; ls -al; cp src/main/cobol/calculator2-exe /tmp; ls /tmp; mvn clean test'
+                sh 'pwd; ls -al; cd src/main/cobol; pwd; ls -al; cobc -free -x -o calculator2-exe CALCULATOR2.CBL; ls -al; cp src/main/cobol/calculator2-exe /tmp; ls /tmp; mvn clean test'
             }
         }       
     }
