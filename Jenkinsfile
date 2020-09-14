@@ -26,17 +26,17 @@ pipeline {
     //             }               
     //         }
     //     }
-        stage('Development | Build') {
-            agent {
-                label 'cobol-bin'
-            }
-            steps {
-                echo 'Build the calculator '
+    //    stage('Development | Build') {
+     //       agent {
+    //            label 'cobol-bin'
+    //        }
+    //        steps {
+    //            echo 'Build the calculator '
                 //sh 'docker build -t .'
-                echo 'run the image'
+    //            echo 'run the image'
                 //sh 'docker run calculator:latest 9 8 "a"'
-            }
-        }
+    //        }
+    //    }
         stage('Functional testing maven') {
            agent {
                 label 'cobol-bin'
