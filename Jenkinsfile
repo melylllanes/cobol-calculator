@@ -37,7 +37,7 @@ pipeline {
                 sh 'chmod 777 /tmp/calculator2-exe; cp /tmp/calculator2-exe .; ls -al; pwd; mvn clean test; pwd'
             }
         }
-         stage('Development | Build') {
+         stage('Build Docker Image') {
            agent {
                 label 'cobol-bin'
             }
