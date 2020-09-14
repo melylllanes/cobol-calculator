@@ -32,9 +32,15 @@ pipeline {
             }
             steps {
                 echo 'Build the calculator '
-                //sh 'docker build -t .'
-                echo 'run the image'
-                //sh 'docker run calculator:latest 9 8 "a"'
+                script{
+                  try{
+                    sh 'oc new-build --strategy docker --binary --name calculator2-exe'
+                    sh 'oc start-build calculator2-exe --from-dir . --follow'
+                  }
+                  catch (error){
+                    sh 'oc start-build calculator2-exe --from-dir . --follow'
+                  }
+                }
             }
         }
         stage('Functional testing maven') {
