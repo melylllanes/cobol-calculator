@@ -20,7 +20,5 @@
                MULTIPLY NUM1 BY NUM2 GIVING RESULTADO.
 	   IF OPERACION = "d" THEN
                DIVIDE NUM1 INTO NUM2 GIVING RESULTADO.
-           DISPLAY NUM1.
-           DISPLAY NUM2.
            DISPLAY RESULTADO.           
        STOP RUN.
