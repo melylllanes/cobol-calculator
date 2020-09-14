@@ -26,17 +26,17 @@ pipeline {
                 }               
             }
         }
-        stage('Development | Build') {
-            agent {
-                label 'cobol-bin'
-            }
-            steps {
-                echo 'Build the calculator '
-                //sh 'docker build -t .'
-                echo 'run the image'
-                //sh 'docker run calculator:latest 9 8 "a"'
-            }
-        }
+        //stage('Development | Build') {
+        //    agent {
+        //        label 'cobol-bin'
+        //    }
+        //    steps {
+        //        echo 'Build the calculator '
+        //        //sh 'docker build -t .'
+        //        echo 'run the image'
+        //        //sh 'docker run calculator:latest 9 8 "a"'
+        //    }
+        //}
         stage('Functional testing maven') {
            agent {
                 label 'cobol-bin'
@@ -44,7 +44,7 @@ pipeline {
             steps {
                 checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/diana-estrada/hellocucumber.git']]]
                 echo 'Buid the calculator binary'
-                sh 'cd src/main/cobol && cobc -free -x -o calculator2-exe CALCULATOR2.CBL && cp src/main/cobol/calculator2-exe /tmp && ls /tmp && mvn clean test'
+                sh 'pwd & ls -al & cd src/main/cobol & cobc -free -x -o calculator2-exe CALCULATOR2.CBL & cp src/main/cobol/calculator2-exe /tmp & ls /tmp & mvn clean test'
             }
         }       
     }
