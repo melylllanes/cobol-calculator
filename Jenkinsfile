@@ -1,6 +1,6 @@
 pipeline {
     agent none
-    // stages {
+     stages {
     //     stage('unit testing phase') {
     //         agent {
     //             label 'cobol-bin'
