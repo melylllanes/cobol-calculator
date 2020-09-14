@@ -1,42 +1,42 @@
 pipeline {
     agent none
      stages {
-    //     stage('unit testing phase') {
-    //         agent {
-    //             label 'cobol-bin'
-    //         }
-    //         steps {
-    //             echo 'Compile unit testing framework'
-    //             echo 'Unit test'
-    //             sh './compile ZUTZCPC'
-    //             echo 'Run test suite calculator'
-    //             sh './run-ut CALCULATOR2C CALCULATOR2 CALCULATOR2T'
-    //         }
-    //     }
-    //     stage('SonarCloud Analysis') {
-    //         agent {
-    //             label 'cobol-bin'
-    //         }            
-    //         environment {
-    //             scannerHome = tool 'SonarCubeScanner'
-    //         }            
-    //         steps {
-    //             withSonarQubeEnv('sonar') {
-    //                 sh "${scannerHome}/bin/sonar-scanner"
-    //             }               
-    //         }
-    //     }
-    //    stage('Development | Build') {
-     //       agent {
-    //            label 'cobol-bin'
-    //        }
-    //        steps {
-    //            echo 'Build the calculator '
+         stage('unit testing phase') {
+             agent {
+                 label 'cobol-bin'
+             }
+             steps {
+                 echo 'Compile unit testing framework'
+                 echo 'Unit test'
+                 sh './compile ZUTZCPC'
+                 echo 'Run test suite calculator'
+                 sh './run-ut CALCULATOR2C CALCULATOR2 CALCULATOR2T'
+             }
+         }
+         stage('SonarCloud Analysis') {
+             agent {
+                 label 'cobol-bin'
+             }            
+             environment {
+                 scannerHome = tool 'SonarCubeScanner'
+             }            
+             steps {
+                 withSonarQubeEnv('sonar') {
+                     sh "${scannerHome}/bin/sonar-scanner"
+                 }               
+             }
+         }
+        stage('Development | Build') {
+           agent {
+                label 'cobol-bin'
+            }
+            steps {
+                echo 'Build the calculator '
                 //sh 'docker build -t .'
-    //            echo 'run the image'
+                echo 'run the image'
                 //sh 'docker run calculator:latest 9 8 "a"'
-    //        }
-    //    }
+            }
+        }
         stage('Functional testing maven') {
            agent {
                 label 'cobol-bin'
