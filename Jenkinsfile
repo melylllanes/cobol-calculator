@@ -28,26 +28,7 @@ pipeline {
                 sh 'chmod 777 /tmp/calculator2-exe; cp /tmp/calculator2-exe .; ls -al; pwd; mvn clean test; pwd'
             }
         }
-         stage('Build Docker Image') {
-            steps {
-                echo 'Build the calculator '
-                script{
-                  try{
-                    sh 'oc new-build --strategy docker --binary --name calculator2-exe'
-                    sh 'oc start-build calculator2-exe --from-dir . --follow'
-                  }
-                  catch (error){
-                    sh 'oc start-build calculator2-exe --from-dir . --follow'
-                  }
-                }
-            }
-        }
+        
     }
-    // post {
-    //     always {
-    //         cucumber buildStatus: 'UNSTABLE',
-    //             reportTitle: 'My report',
-    //             fileIncludePattern: '**/*.json'
-    //     }
-    // }
+    
 }
