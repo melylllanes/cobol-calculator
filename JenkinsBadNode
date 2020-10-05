@@ -10,7 +10,7 @@ pipeline {
      stages {
          stage('Check Environment') {
              steps {
-                 ansiblePlaybook become: true, installation: 'Ansible', inventory: 'l', playbook: 'ansible/check_playbook.yml', tags: '${${params.TAG_JAVA}}${params.TAG_CUCUMBER},${params.TAG_COBOL},${params.TAG_SONAR}'
+                 ansiblePlaybook become: true, installation: 'Ansible', inventory: 'l', playbook: 'ansible/check_playbook.yml', tags: "${params.TAG_JAVA}}${params.TAG_CUCUMBER},${params.TAG_COBOL},${params.TAG_SONAR}"
              }
          }
          stage('Unit Testing') {
