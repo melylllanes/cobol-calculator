@@ -1,0 +1,13 @@
+- name: Verify where is cobol
+  command: whereis open-cobol
+- name: Execute cobol
+  shell:
+    cmd: |
+          cat > /tmp/h.cbl << EOF
+          IDENTIFICATION DIVISION.
+          PROGRAM-ID. HELLO-WORLD.
+          PROCEDURE DIVISION.
+          DISPLAY 'Hello world!'.
+          STOP RUN.
+          EOF
+          cobc -free -o -x /tmp/h.cbl

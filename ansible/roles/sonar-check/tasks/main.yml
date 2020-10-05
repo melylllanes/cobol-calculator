@@ -1,0 +1,23 @@
+- name: Revisa que la url de sonar este funcionando
+  uri:
+    url: "https://sonarcloud.io/dashboard?id=helozano_cobol-calculator"
+    follow_redirects: none
+    method: GET
+  register: _result
+  until: _result.status == 200
+  retries: 720
+  delay: 5
+  
+- name: Verificar token
+  uri:
+    url: 'https://sonarcloud.io/dashboard?id=helozano_cobol-calculator'
+    headers:
+      api_key: "ef20c9c6e19dcd60a9c89dddea8092ba1d48bc28"
+      Accept: 'application/json'
+    validate_certs: yes
+    follow_redirects: all
+    return_content: yes
+    status_code: 200
+    method: GET
+  register: get_nodes_out
+- debug: var=get_nodes_out

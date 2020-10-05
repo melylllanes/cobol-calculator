@@ -1,0 +1,14 @@
+- name: chek java packages is installed
+  shell: dpkg-query --list | grep -i java | awk '{print $2,$3,$4,$5}'
+  register: java_result
+
+- debug:
+      msg: "{{ java_result.stdout }}"
+  when: java_result is success
+
+- name: check java version
+  shell: java -version 2>&1 | grep version | awk '{print $3}' | sed 's/"//g'
+  register: java_result
+
+- debug:
+      msg: "{{ java_result.stdout }}"

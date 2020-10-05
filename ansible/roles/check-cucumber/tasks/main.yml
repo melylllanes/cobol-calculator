@@ -1,0 +1,9 @@
+- name: Register cucumber installation
+  shell: cucumber --version
+  register: mvn_cucumber
+  failed_when: '"not found" in mvn_cucumber.stderr'
+
+- name: Check cucumber version installation status
+  debug:
+    msg: "{{ mvn_cucumber.stdout }}"
+  when: mvn_cucumber is success or mvn_cucumber is failed
