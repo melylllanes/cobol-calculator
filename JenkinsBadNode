@@ -6,8 +6,7 @@ pipeline {
         string(defaultValue: '', description: 'Write java to execute only java check', name: 'TAG_SONAR')
     }
 
-    agent {
-    }
+    agent { label 'Failed_node'}
      stages {
          stage('Check Environment') {
              steps {
