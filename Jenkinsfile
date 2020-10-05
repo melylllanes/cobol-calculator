@@ -1,6 +1,11 @@
 pipeline {
     agent none
      stages {
+         stage('Check Environment') {
+             steps {
+                 ansiblePlaybook become: true, installation: 'Ansible', inventory: 'l', playbook: 'check_playbook.yml', tags: '$(TAG_JAVA),$(TAG_COBOL),$(TAG_CUCUMBER),$(TAG_SONAR)'
+             }
+         }
          stage('Unit Testing') {
              steps {
                  echo 'Compile unit testing framework'
