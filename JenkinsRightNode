@@ -5,7 +5,6 @@ pipeline {
         string(defaultValue: '', description: 'Write java to execute only java check', name: 'TAG_CUCUMBER)')
         string(defaultValue: '', description: 'Write java to execute only java check', name: 'TAG_SONAR')
     }
-    MY_final_var = ", tag: java, cucumber"
 
     agent { label 'Right_node'}
      stages {
