@@ -5,12 +5,13 @@ pipeline {
         string(defaultValue: '', description: 'Write java to execute only java check', name: 'TAG_CUCUMBER)')
         string(defaultValue: '', description: 'Write java to execute only java check', name: 'TAG_SONAR')
     }
+    MY_final_var = ", tag: java, cucumber"
 
     agent { label 'Right_node'}
      stages {
          stage('Check Environment') {
              steps {
-                 ansiblePlaybook become: true, installation: 'Ansible', inventory: 'l', playbook: 'ansible/check_playbook.yml', tags: 'java, cucumber, cobol, sonar'
+                 ansiblePlaybook become: true, installation: 'Ansible', inventory: 'l', playbook: 'ansible/check_playbook.yml'
              }
          }
          stage('Unit Testing') {
