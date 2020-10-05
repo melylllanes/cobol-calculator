@@ -1,11 +1,11 @@
 ---
 - hosts: localhost
   roles: 
-    - check-cobol
+    - role: check-cobol
       tags: [cobol]
-    - check-cucumber
+    - role: check-cucumber
       tags: [cucumber]
-    - check-java
+    - role: check-java
       tags: [java]
-    - sonar-check
+    - role: sonar-check
       tags: [sonar]
