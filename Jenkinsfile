@@ -1,12 +1,14 @@
 pipeline { 
     
-    agent any
     
-    parameters {
-     
+      parameters {
+
         booleanParam(name: 'TAG_JAVA', defaultValue: true, description: 'Execute Java')
 
     }
+    
+     agent { label 'Right_node'}
+
 
      stages {
          stage('Check Environment') {    
