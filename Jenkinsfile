@@ -24,7 +24,7 @@ pipeline {
                      }
                 }
                      
-                 ansiblePlaybook become: true, installation: 'Ansible', inventory: 'l', playbook: 'ansible/check_playbook.yml', tags: 'TAG_JAVA'
+                 ansiblePlaybook become: true, installation: 'Ansible', inventory: 'l', playbook: 'ansible/check_playbook.yml', tags: 'java'
              }
          }
      }
