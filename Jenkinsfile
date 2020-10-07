@@ -13,6 +13,8 @@ pipeline {
         stage('Check Environment') {
             steps {
                 script {
+                    def TAGSX = ''
+
 
                     if(params.isJAVA.toBoolean()) {
                         TAGSX = TAGSX + 'java' 
