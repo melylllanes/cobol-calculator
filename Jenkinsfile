@@ -27,6 +27,7 @@ pipeline {
                     } else {
                         TAGSX = ''
                     }
+                    print(TAGSX)
 
                     if (params.isCOBOL.toBoolean()) {
                         if (TAGSX){
