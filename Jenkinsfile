@@ -38,7 +38,7 @@ pipeline {
                 }
 
                 ansiblePlaybook become: true, installation: 'Ansible', inventory: 'l',
-                playbook: 'ansible/check_playbook.yml', tags: params.TAG_JAVA, params.TAG_COBOL, params.TAG_CUCUMBER, params.TAG_SONAR
+                playbook: 'ansible/check_playbook.yml', tags: "$TAG_JAVA, $TAG_COBOL, $TAG_CUCUMBER, $TAG_SONAR"
             }
         }
     }
