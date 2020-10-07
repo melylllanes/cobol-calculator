@@ -1,10 +1,10 @@
 
 pipeline {
     parameters {
-        booleanParam(name: 'TAG_JAVA', defaultValue: true, description: 'Execute Java')
-        booleanParam(name: 'TAG_COBOL', defaultValue: true, description: 'Execute Cobol')
-        booleanParam(name: 'TAG_CUCUMBER', defaultValue: true, description: 'Execute Ccucumber')
-        booleanParam(name: 'TAG_SONAR', defaultValue: true, description: 'Execute Sonar')
+        booleanParam(name: 'isJAVA', defaultValue: true, description: 'Execute Java')
+        booleanParam(name: 'isCOBOL', defaultValue: true, description: 'Execute Cobol')
+        booleanParam(name: 'isCUCUMBER', defaultValue: true, description: 'Execute Cucumber')
+        booleanParam(name: 'isSONAR', defaultValue: true, description: 'Execute Sonar')
     }
 
     agent { label 'Right_node' }
@@ -13,27 +13,32 @@ pipeline {
         stage('Check Environment') {
             steps {
                 script {
-                    if (params.TAG_JAVA.toBoolean()) {
+
+                    if (params.isJAVA.toBoolean()) {
                         TAG_JAVA = 'java'
                  } else {
                         TAG_JAVA = ''
                     }
 
-                    if (params.TAG_COBOL.toBoolean()) {
+                    if (params.isCOBOL.toBoolean()) {
                         TAG_COBOL = 'cobol'
                     }else {
                         TAG_COBOL = ''
                     }
-                    if (params.TAG_CUCUMBER.toBoolean()) {
+                    if (params.isCUCUMBER.toBoolean()) {
                         TAG_CUCUMBER = 'cucumber'
+                    }else {
+                        TAG_CUCUMBER = ''
                     }
-                        if (params.TAG_SONAR.toBoolean()) {
+                    if (params.isSONAR.toBoolean()) {
                         TAG_SONAR = 'sonar'
-                        }
+                    } else {
+                        TAG_SONAR = ''
+                    }
                 }
 
                 ansiblePlaybook become: true, installation: 'Ansible', inventory: 'l',
-                playbook: 'ansible/check_playbook.yml', tags: 'java, cobol, cucumber, sonar'
+                playbook: 'ansible/check_playbook.yml', tags: params.TAG_JAVA, params.TAG_COBOL, params.TAG_CUCUMBER, params.TAG_SONAR
             }
         }
     }
