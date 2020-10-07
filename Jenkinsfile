@@ -46,7 +46,9 @@ pipeline {
                             TAGSX = 'sonar'
                         }
                     } 
-                    print(TAGSX)
+                    TAGSX = ""
+                    print("tAGS" + TAGSX)
+
                  
                 }
 
