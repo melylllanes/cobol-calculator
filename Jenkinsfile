@@ -18,7 +18,6 @@ pipeline {
             steps {
                 script {
                  
-                    print(params.isJAVA.toBoolean())
                     if(params.isJAVA.toBoolean()) {
                         TAGSX = 'java' 
                               
