@@ -1,3 +1,4 @@
+
 pipeline {
     parameters {
         booleanParam(name: 'TAG_JAVA', defaultValue: true, description: 'Execute Java')
@@ -20,6 +21,8 @@ pipeline {
 
                     if (params.TAG_COBOL.toBoolean()) {
                         TAG_COBOL = 'cobol'
+                    }else {
+                        TAG_COBOL = ''
                     }
                     if (params.TAG_CUCUMBER.toBoolean()) {
                         TAG_CUCUMBER = 'cucumber'
@@ -29,7 +32,8 @@ pipeline {
                         }
                 }
 
-                ansiblePlaybook become: true, installation: 'Ansible', inventory: 'l', playbook: 'ansible/check_playbook.yml', tags: 'java, cobol, cucumber, sonar'
+                ansiblePlaybook become: true, installation: 'Ansible', inventory: 'l',
+                playbook: 'ansible/check_playbook.yml', tags: 'java, cobol, cucumber, sonar'
             }
         }
     }
