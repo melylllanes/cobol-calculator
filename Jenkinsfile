@@ -7,17 +7,19 @@ pipeline {
         booleanParam(name: 'isSONAR', defaultValue: true, description: 'Execute Sonar')
     }
 
+    environment {
+        TAGSX = ""
+    }
+
     agent { label 'Right_node' }
 
     stages {
         stage('Check Environment') {
             steps {
                 script {
-                    def TAGSX = ''
-
-
+                 
                     if(params.isJAVA.toBoolean()) {
-                        TAGSX = TAGSX + 'java' 
+                        TAGSX = 'java' 
                               
                     } else {
                         TAGSX = ''
