@@ -48,13 +48,11 @@ pipeline {
                         }
                     } 
 
-                    if(!TAGSX){
-                        TAGSX = ''    
-                    }
+                 
                 }
 
                 ansiblePlaybook become: true, installation: 'Ansible', inventory: 'l',
-                playbook: 'ansible/check_playbook.yml', tags: "$TAGSX"
+                playbook: 'ansible/check_playbook.yml', tags: ""
             }
         }
     }
