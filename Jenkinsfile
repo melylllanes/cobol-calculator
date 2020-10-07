@@ -17,17 +17,12 @@ pipeline {
         stage('Check Environment') {
             steps {
                 script {
-                    
-                       print(params.isJAVA.toBoolean())
-
                  
+                    print(params.isJAVA.toBoolean())
                     if(params.isJAVA.toBoolean()) {
                         TAGSX = 'java' 
                               
-                    } else {
-                        TAGSX = ''
-                    }
-                    print(TAGSX)
+                    } 
 
                     if (params.isCOBOL.toBoolean()) {
                         if (TAGSX){
@@ -35,8 +30,6 @@ pipeline {
                         }else{
                             TAGSX = 'cobol'
                         }
-                    }else {
-                        TAGSX = ''
                     }
 
                     if (params.isCUCUMBER.toBoolean()) {
@@ -45,8 +38,6 @@ pipeline {
                         }else{
                             TAGSX = 'cucumber'
                         }
-                    }else {
-                        TAGSX = ''
                     }
 
                     if (params.isSONAR.toBoolean()) {
@@ -55,9 +46,7 @@ pipeline {
                         }else{
                             TAGSX = 'sonar'
                         }
-                    } else {
-                        TAGSX = ''
-                    }
+                    } 
                 }
 
                 ansiblePlaybook become: true, installation: 'Ansible', inventory: 'l',
