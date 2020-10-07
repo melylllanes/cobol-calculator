@@ -47,6 +47,10 @@ pipeline {
                             TAGSX = 'sonar'
                         }
                     } 
+
+                    if(!TAGSX){
+                        TAGSX = ''    
+                    }
                 }
 
                 ansiblePlaybook become: true, installation: 'Ansible', inventory: 'l',
