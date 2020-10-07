@@ -15,45 +15,45 @@ pipeline {
                 script {
 
                     if(params.isJAVA.toBoolean()) {
-                        TAGS = TAGS + 'java' 
+                        TAGSX = TAGSX + 'java' 
                               
                     } else {
-                        TAGS = ''
+                        TAGSX = ''
                     }
 
                     if (params.isCOBOL.toBoolean()) {
-                        if (TAGS){
-                            TAGS = TAGS + ',cobol'
+                        if (TAGSX){
+                            TAGSX = TAGSX + ',cobol'
                         }else{
-                            TAGS = 'cobol'
+                            TAGSX = 'cobol'
                         }
                     }else {
-                        TAGS = ''
+                        TAGSX = ''
                     }
 
                     if (params.isCUCUMBER.toBoolean()) {
-                         if (TAGS){
-                            TAGS = TAGS + ',cucumber'
+                         if (TAGSX){
+                            TAGSX = TAGSX + ',cucumber'
                         }else{
-                            TAGS = 'cucumber'
+                            TAGSX = 'cucumber'
                         }
                     }else {
-                        TAGS = ''
+                        TAGSX = ''
                     }
 
                     if (params.isSONAR.toBoolean()) {
-                         if (TAGS){
-                            TAGS = TAGS + ',sonar'
+                         if (TAGSX){
+                            TAGSX = TAGSX + ',sonar'
                         }else{
-                            TAGS = 'sonar'
+                            TAGSX = 'sonar'
                         }
                     } else {
-                        TAGS = ''
+                        TAGSX = ''
                     }
                 }
 
                 ansiblePlaybook become: true, installation: 'Ansible', inventory: 'l',
-                playbook: 'ansible/check_playbook.yml', tags: "$TAGS"
+                playbook: 'ansible/check_playbook.yml', tags: "$TAGSX"
             }
         }
     }
