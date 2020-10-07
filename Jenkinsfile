@@ -46,8 +46,10 @@ pipeline {
                             TAGSX = 'sonar'
                         }
                     } 
-                    TAGSX = ""
-                    print("tAGS" + TAGSX)
+
+                    if (!TAGS){
+                        TAGSX = ""
+                    }
 
                  
                 }
