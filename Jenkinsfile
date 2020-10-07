@@ -14,31 +14,45 @@ pipeline {
             steps {
                 script {
 
-                    if (params.isJAVA.toBoolean()) {
-                        TAG_JAVA = 'java'
-                 } else {
-                        TAG_JAVA = ''
+                    if(params.isJAVA.toBoolean()) {
+                        TAGS = TAGS + 'java' 
+                              
+                    } else {
+                        TAGS = ''
                     }
 
                     if (params.isCOBOL.toBoolean()) {
-                        TAG_COBOL = 'cobol'
+                        if (TAGS){
+                            TAGS = TAGS + ',cobol'
+                        }else{
+                            TAGS = 'cobol'
+                        }
                     }else {
-                        TAG_COBOL = ''
+                        TAGS = ''
                     }
+
                     if (params.isCUCUMBER.toBoolean()) {
-                        TAG_CUCUMBER = 'cucumber'
+                         if (TAGS){
+                            TAGS = TAGS + ',cucumber'
+                        }else{
+                            TAGS = 'cucumber'
+                        }
                     }else {
-                        TAG_CUCUMBER = ''
+                        TAGS = ''
                     }
                     if (params.isSONAR.toBoolean()) {
-                        TAG_SONAR = 'sonar'
+                         if (TAGS){
+                            TAGS = TAGS + ',sonar'
+                        }else{
+                            TAGS = 'sonar'
+                        }
                     } else {
-                        TAG_SONAR = ''
+                        TAGS = ''
                     }
                 }
 
                 ansiblePlaybook become: true, installation: 'Ansible', inventory: 'l',
-                playbook: 'ansible/check_playbook.yml', tags: ""
+                playbook: 'ansible/check_playbook.yml', tags: "$TAG_JAVA, $TAG_COBOL, $TAG_CUCUMBER, $TAG_SONAR"
             }
         }
     }
