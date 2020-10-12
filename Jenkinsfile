@@ -49,9 +49,7 @@ pipeline {
                         }
                     } 
 
-                    if (!TAGS){
-                        TAGSX = ""
-                    }
+                 
 
                  
                 }
