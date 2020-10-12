@@ -1,18 +1,61 @@
+
 pipeline {
     parameters {
-        string(defaultValue: '', description: 'Write java to execute only java check', name: 'TAG_JAVA')
-        string(defaultValue: '', description: 'Write java to execute only java check', name: 'TAG_COBOL')
-        string(defaultValue: '', description: 'Write java to execute only java check', name: 'TAG_CUCUMBER)')
-        string(defaultValue: '', description: 'Write java to execute only java check', name: 'TAG_SONAR')
+        booleanParam(name: 'isJAVA', defaultValue: true, description: 'Execute Java')
+        booleanParam(name: 'isCOBOL', defaultValue: true, description: 'Execute Cobol')
+        booleanParam(name: 'isCUCUMBER', defaultValue: true, description: 'Execute Cucumber')
+        booleanParam(name: 'isSONAR', defaultValue: true, description: 'Execute Sonar')
     }
 
-    agent { label 'Right_node'}
-     stages {
-         stage('Check Environment') {
-             steps {
-                 ansiblePlaybook become: true, installation: 'Ansible', inventory: 'l', playbook: 'ansible/check_playbook.yml'
-             }
-         }
+    environment {
+        TAGSX = ""
+    }
+
+    agent { label 'Right_node' }
+
+    stages {
+        stage('Check Environment') {
+            steps {
+                script {
+                 
+                    TAGSX = ""
+
+                    if(params.isJAVA.toBoolean()) {
+                        TAGSX = 'java' 
+                              
+                    } 
+
+                    if (params.isCOBOL.toBoolean()) {
+                        if (TAGSX){
+                            TAGSX = TAGSX + ',cobol'
+                        }else{
+                            TAGSX = 'cobol'
+                        }
+                    }
+
+                    if (params.isCUCUMBER.toBoolean()) {
+                         if (TAGSX){
+                            TAGSX = TAGSX + ',cucumber'
+                        }else{
+                            TAGSX = 'cucumber'
+                        }
+                    }
+
+                    if (params.isSONAR.toBoolean()) {
+                         if (TAGSX){
+                            TAGSX = TAGSX + ',sonar'
+                        }else{
+                            TAGSX = 'sonar'
+                        }
+                    } 
+                 
+                }
+
+                ansiblePlaybook become: true, installation: 'Ansible', inventory: 'l',
+                playbook: 'ansible/check_playbook.yml', tags: "$TAGSX"
+            }
+        }
+
          stage('Unit Testing') {
              steps {
                  echo 'Compile unit testing framework'
